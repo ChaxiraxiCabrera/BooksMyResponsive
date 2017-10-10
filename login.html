@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>BooksMy</title>
+    <!--BOOTSTRAP-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/estilos.css">
+  </head>
+  <body data-spy="scroll" data-target="#navegacion">
+    <header>
+      <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navegacion-fm">
+              <span class="sr-only">Desplegar/Ocultar Menu</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">BooksMy</a>
+          </div>
+          <!-- Inicia Menu-->
+          <div class="collapse navbar-collapse" id="navegacion-fm">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="index.html">Inicio</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="sign-up.html"><span class="glyphicon glyphicon-user"> Registrarse</span></a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-log-in"> Iniciar Sesión</span></a></li>  
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <section class="main container">
+      <form class="form-horizontal" action="checkLogin.php" method="POST">
+        <h4 align="center">Iniciar Sesión</h4>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="user">Usuario:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="user" name="user" placeholder="Usuario" required="required">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="pwd">Contraseña:</label>
+          <div class="col-sm-10"> 
+            <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Contraseña" required="required">
+          </div>
+        </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+              <label><input type="checkbox">Recordarme</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group"> 
+          <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6">
+            <p>&copy; 2017</p>
+          </div>
+          <div class="col-xs-6">
+            <ul class="list-inline text-right">
+              <li><a href="#">Incio</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  <!-- BOOTSTRAP JAVASCRIPT-->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  </body>
+</html> 
