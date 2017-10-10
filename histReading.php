@@ -1,21 +1,9 @@
 <?php 
 	include("connection.php");
 	session_start();
-
-	$user_id = $_SESSION['user'];
-
-	$sql_query="SELECT * FROM libros WHERE id_usuario='$user_id' AND leido='NO'";
-	$results=$dbConnection->query($sql_query);
-	
-	$book_array = array();
-
-	foreach ($results as $result) {
-		array_push($book_array, $result['nombre']);
-	}
-
-	if (count($book_array) == 0) {
-		array_push($book_array, "No tiene libros registrados");
-	}
+	$user_id=$_SESSION['user'];
+	$sql_query="SELECT * FROM libros WHERE id_usuario='$user_id'";
+	$results=$dbConnection->query($sql_query);	
 ?>
 
 <!DOCTYPE html>
@@ -58,9 +46,9 @@
 								</ul>
 							</li>
 							<li><a href="bookForm.php">Añadir Libro</a></li>
-							<li class="active"><a href="selectBook.php">Recomendación</a></li>
+							<li><a href="selectBook.php">Recomendación</a></li>
 							<li><a href="statistics.php">Estadísticas</a></li>
-							<li class="dropdown">
+							<li class="dropdown active">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
 									Lecturas
 									<span class="caret"></span>
@@ -81,13 +69,76 @@
 			</nav>
 		</header>
 
-		<section class="main container">
-			<div class="row-fluid">
-				<div class="span12">
-					<a class="bookR inline">Libro recomendado: <?php  echo $book_array[array_rand($book_array)]; ?></a>
-					<a href="selectBook.php" class="btn btn-primary inline">Nueva recomendación</a>
-				</div>
+		<section class="jumbotron">
+			<div class="container">
+				<h1 class="titulo-blog">BooksMy</h1>
+				<p>Bienvenido usuario: <i><?php echo $_SESSION['nameUser']?></i></p>
 			</div>
+		</section>
+
+		<section class="main container">
+			<div class="row">
+				<div class="miga-de-pan">
+					<ol class="breadcrumb">
+						<li><a href="userPage.php">Inicio</a></li>
+						<li>Lecturas</li>
+						<li class="active">Historial</li>
+					</ol>
+				</div>
+
+				<form action="saveReading.php" class="form-inline" method="POST">
+					<div class="form-group">
+					  <label for="sel1">Seleccionar libro:</label>
+					  <select class="form-control" id="sel1" name="sel1">
+					  	<?php 
+								foreach ($results as $result) {
+						?>
+					    <option value="<?php echo $result['id_libro']; ?>"><?php echo $result['nombre']; ?></option>
+					    <?php  
+							} 
+							mysqli_close($dbConnection);
+						?>
+					  </select>
+					</div>
+
+					<button class="btn btn-primary">Comenzar lectura</button>
+				</form>
+			</div>
+
+			<br>
+			<div class="table-responsive">
+					<table class="table table-bordered table-hover">
+						<tr class="info">
+							<th>Libro</th>
+							<th>Inicio</th>
+							<th>Fin</th>
+							<th>Tiempo Total(Días)</th>
+						</tr>
+						<?php 
+							include("connection.php");
+							
+							$sql_query="SELECT *  FROM lecturas INNER JOIN libros ON lecturas.id_libro=libros.id_libro and lecturas.id_usuario='$user_id' and lecturas.terminado='Yes'";
+							$results=$dbConnection->query($sql_query);	
+							foreach ($results as $result) {
+						?>
+						<tr>
+							<td><?php echo $result['nombre']; ?></td>
+							<td><?php echo $result['inicio']; ?></td>
+							<td><?php echo $result['fin']; ?></td>
+							<?php 
+								$date1 = strtotime($result['inicio']);
+								$date2 = strtotime($result['fin']);
+								$secs = $date2 - $date1;
+								$days = $secs / 86400;
+							 ?>
+							<td><?php echo $days; ?></td>
+						</tr>
+						<?php  
+							} 
+							mysqli_close($dbConnection);
+						?>
+					</table>
+				</div>
 		</section>
 
 

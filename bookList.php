@@ -27,7 +27,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a href="#" class="navbar-brand">BooksMy</a>
+						<a href="userPage.php" class="navbar-brand">BooksMy</a>
 					</div>
 					<!-- Inicia Menu-->
 					<div class="collapse navbar-collapse" id="navegacion-fm">
@@ -48,6 +48,17 @@
 							<li><a href="bookForm.php">Añadir Libro</a></li>
 							<li><a href="selectBook.php">Recomendación</a></li>
 							<li><a href="statistics.php">Estadísticas</a></li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+									Lecturas
+									<span class="caret"></span>
+								</a>
+								<ul class="dropdown-menu" role="menu">
+									<li><a href="reading.php">Actuales</a></li>
+									<li class="divider"></li>
+									<li><a href="histReading.php">Historial</a></li>
+								</ul>
+							</li>
 						</ul>
 						
 						<ul class="nav navbar-nav navbar-right">
@@ -69,8 +80,8 @@
 			<div class="row">
 				<div class="miga-de-pan">
 					<ol class="breadcrumb">
-						<li><a href="#">Inicio</a></li>
-						<li><a href="#">Listas</a></li>
+						<li><a href="userPage.php">Inicio</a></li>
+						<li>Listas</li>
 						<li class="active">Libros Registrados</li>
 					</ol>
 				</div>
@@ -110,11 +121,6 @@
 				<div class="row">
 					<div class="col-xs-6">
 						<p>&copy; 2017</p>
-					</div>
-					<div class="col-xs-6">
-						<ul class="list-inline text-right">
-							<li><a href="#">Incio</a></li>
-						</ul>
 					</div>
 				</div>
 			</div>
